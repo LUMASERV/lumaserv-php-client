@@ -11,16 +11,14 @@ namespace LumaservSystems;
 
 class Credentials
 {
-    private $username;
-    private $password;
+    private $token;
     private $debug;
 
     private $url;
 
     public function __construct($credentials, $debug)
     {
-        $this->username = $credentials[0];
-        $this->password = $credentials[1];
+        $this->token = $credentials[0];
 
         switch ($debug) {
             case true:
@@ -31,5 +29,38 @@ class Credentials
                 $this->debug = true;
                 $this->url = 'https://test.reseller.lumaserv.com/api/json';
         }
+    }
+
+    public function __toString()
+    {
+        return sprintf(
+            '[Host: %s], [Token: %s].',
+            $this->url,
+            $this->token
+        );
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isDebug()
+    {
+        return $this->debug;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 }

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jan Waldecker
- * Date: 23.08.2016
- * Time: 19:09
- */
 
 namespace LumaservSystems;
 

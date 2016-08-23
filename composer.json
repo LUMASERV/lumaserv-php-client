@@ -1,0 +1,16 @@
+{
+    "name": "lumaserv/lumaserv-php-client",
+    "description": "A full-featured implementation of the LumaservSystem-JSON-API",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "LUMASERV Systems",
+            "email": "info@lumaserv.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}

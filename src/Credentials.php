@@ -2,8 +2,6 @@
 
 namespace LumaservSystems;
 
-use LumaservSystems\Exception\MalformedParameterException;
-
 class Credentials
 {
     private $token;
@@ -13,7 +11,6 @@ class Credentials
 
     public function __construct($token, $debug)
     {
-
         $this->token = $token;
 
         switch ($debug) {

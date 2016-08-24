@@ -1,25 +1,26 @@
 <?php
 
-use LumaservSystems\LUMASERV;
 use CustomClasses\TestClass;
+use LumaservSystems\LUMASERV;
 
-class AuthenticationTest extends PHPUnit_Framework_TestCase {
-
+class AuthenticationTest extends PHPUnit_Framework_TestCase
+{
     /**
      * @expectedException \LumaservSystems\Exception\MalformedParameterException
      */
-    public function testExceptionIsThrownIfBadParamsPassed() {
+    public function testExceptionIsThrownIfBadParamsPassed()
+    {
         $lumaserv = new LUMASERV([
             'username' => '10001',
-            'password' => ''
+            'password' => '',
         ]);
     }
 
     /**
      * @expectedException  \LumaservSystems\Exception\MalformedParameterException
      */
-    public function testExceptionIsThrownWhenWrongCredentialsObjectIsPassed() {
+    public function testExceptionIsThrownWhenWrongCredentialsObjectIsPassed()
+    {
         $lumaserv = new LUMASERV(new TestClass('test', 'test2'));
     }
-
 }

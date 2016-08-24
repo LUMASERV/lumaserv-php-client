@@ -10,11 +10,3 @@ php:
 before_script:
   - composer self-update
   - composer install --prefer-source
-
-script:
-  - mkdir .reports
-  # Code style
-  - php vendor/bin/phpcs ./src/ --standard=PSR1 --encoding=utf-8 --report=summary
-  - php vendor/bin/phpcs ./src/ --standard=PSR2 --encoding=utf-8 --report=summary
-  # PHPUnit tests
-  - php vendor/bin/phpunit --configuration phpunit.xml --coverage-clover=.reports/clover.xml

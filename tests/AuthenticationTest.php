@@ -1,6 +1,7 @@
 <?php
 
 use LumaservSystems\LUMASERV;
+use CustomClasses\TestClass;
 
 class AuthenticationTest extends \PHPUnit_Framework_TestCase {
 

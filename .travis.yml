@@ -18,11 +18,3 @@ script:
   - php vendor/bin/phpcs ./src/ --standard=PSR2 --encoding=utf-8 --report=summary
   # PHPUnit tests
   - php vendor/bin/phpunit --configuration phpunit.xml --coverage-clover=.reports/clover.xml
-
-after_success:
-  # Send cover
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover .reports/clover.xml
-
-git:
-depth: 1

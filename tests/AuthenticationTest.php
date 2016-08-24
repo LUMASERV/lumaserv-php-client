@@ -18,7 +18,7 @@ class AuthenticationTest extends \PHPUnit_Framework_TestCase {
      * @expectedException  \LumaservSystems\Exception\MalformedParameterException
      */
     public function testExceptionIsThrownWhenWrongCredentialsObjectIsPassed() {
-        $lumaserv = new LUMASERV(new \CustomClasses\TestClass('test', 'test2'));
+        $lumaserv = new LUMASERV(new TestClass('test', 'test2'));
     }
 
 }

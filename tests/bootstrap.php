@@ -7,3 +7,4 @@ if (!file_exists($autoload)) {
 }
 $loader = include $autoload;
 $loader->addPsr4('LumaservSystems\\', __DIR__);
+$loader->addPsr4('CustomClasses\\', __DIR__);

@@ -6,7 +6,7 @@
     "require": {
         "php": ">=5.5",
         "guzzlehttp/guzzle": "6.2.1",
-        "phpunit/phpunit": "^5.4"
+        "phpunit/phpunit": "^4.8"
     },
     "license": "MIT",
     "authors": [

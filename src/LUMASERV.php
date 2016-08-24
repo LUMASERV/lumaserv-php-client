@@ -11,6 +11,7 @@ class LUMASERV
 
     /**
      * LUMASERV constructor.
+     *
      * @param $credentials Credentials|string
      * @param bool $debug
      * @param null $httpClient
@@ -27,11 +28,13 @@ class LUMASERV
     /**
      * @param $httpClient \GuzzleHttp\Client
      */
-    public function setHttpClient($httpClient = null) {
+    public function setHttpClient($httpClient = null)
+    {
         $this->httpClient = $httpClient ?: new Client();
     }
 
-    public function setCredentials($credentials, $debug) {
+    public function setCredentials($credentials, $debug)
+    {
         if (!$credentials instanceof Credentials) {
             $credentials = new Credentials($credentials, $debug);
         }

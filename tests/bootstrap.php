@@ -1,6 +1,6 @@
 <?php
 
-$autoload = dirname(__DIR__) . '/vendor/autoload.php';
+$autoload = dirname(__DIR__).'/vendor/autoload.php';
 if (!file_exists($autoload)) {
     echo "Please install project runing:\n\tcomposer install\n\n";
     exit("Download composer at https://getcomposer.org/download/\n\n");

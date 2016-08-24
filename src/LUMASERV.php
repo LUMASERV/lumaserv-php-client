@@ -9,6 +9,12 @@ class LUMASERV
     private $httpClient;
     private $credentials;
 
+    /**
+     * LUMASERV constructor.
+     * @param $credentials Credentials|string
+     * @param bool $debug
+     * @param null $httpClient
+     */
     public function __construct(
         $credentials,
         $debug = false,

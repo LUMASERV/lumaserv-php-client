@@ -1,7 +1,5 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-
-class AuthenticationTest extends TestCase {
+class AuthenticationTest extends \PHPUnit_Framework_TestCase {
 
 }

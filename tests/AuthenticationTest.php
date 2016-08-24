@@ -3,7 +3,7 @@
 use LumaservSystems\LUMASERV;
 use CustomClasses\TestClass;
 
-class AuthenticationTest extends \PHPUnit_Framework_TestCase {
+class AuthenticationTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @expectedException \LumaservSystems\Exception\MalformedParameterException

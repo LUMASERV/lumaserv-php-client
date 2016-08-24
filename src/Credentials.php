@@ -3,6 +3,8 @@
 namespace LumaservSystems;
 
 
+use LumaservSystems\Exception\MalformedParameterException;
+
 class Credentials
 {
     private $token;
@@ -10,9 +12,12 @@ class Credentials
 
     private $url;
 
-    public function __construct($credentials, $debug)
+    public function __construct($token, $debug)
     {
-        $this->token = $credentials[0];
+        if (!is_string($token))
+            throw new MalformedParameterException('invalid argument');
+
+        $this->token = $token;
 
         switch ($debug) {
             case true:

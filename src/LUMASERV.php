@@ -9,8 +9,6 @@ class LUMASERV
     private $httpClient;
     private $credentials;
 
-    private $testing;
-
     public function __construct(
         $credentials,
         $debug = false,

@@ -11,6 +11,10 @@ class Credentials
 
     public function __construct($token, $debug)
     {
+        if (!is_string($token)) {
+            throw new MalformedParameterException('invalid argument');
+        }
+        
         $this->token = $token;
 
         switch ($debug) {

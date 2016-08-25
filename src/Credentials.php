@@ -2,6 +2,7 @@
 
 namespace LumaservSystems;
 
+use LumaservSystems\Exception\MalformedParameterException;
 
 class Credentials
 {
@@ -21,11 +22,11 @@ class Credentials
         switch ($debug) {
             case true:
                 $this->debug = false;
-                $this->url = 'https://reseller.lumaserv.com/api/json';
+                $this->url = 'https://reseller.lumaserv.com/api/v1/json/';
                 break;
             case false:
                 $this->debug = true;
-                $this->url = 'https://test.reseller.lumaserv.com/api/json';
+                $this->url = 'https://test.reseller.lumaserv.com/api/v1/json/';
         }
     }
 

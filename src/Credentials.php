@@ -2,6 +2,7 @@
 
 namespace LumaservSystems;
 
+
 class Credentials
 {
     private $token;

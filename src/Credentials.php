@@ -7,11 +7,11 @@ use LumaservSystems\Exception\MalformedParameterException;
 class Credentials
 {
     private $token;
-    private $debug;
+    private $sandbox;
 
     private $url;
 
-    public function __construct($token, $debug)
+    public function __construct($token, $sandbox)
     {
         if (!is_string($token)) {
             throw new MalformedParameterException('invalid argument');
@@ -19,14 +19,14 @@ class Credentials
 
         $this->token = $token;
 
-        switch ($debug) {
+        switch ($sandbox) {
             case true:
-                $this->debug = false;
-                $this->url = 'https://reseller.lumaserv.com/api/json';
+                $this->sandbox = false;
+                $this->url = 'https://reseller.lumaserv.com/api/v1/json/';
                 break;
             case false:
-                $this->debug = true;
-                $this->url = 'https://test.reseller.lumaserv.com/api/json';
+                $this->sandbox = true;
+                $this->url = 'https://test.reseller.lumaserv.com/api/v1/json/';
         }
     }
 
@@ -37,14 +37,6 @@ class Credentials
             $this->url,
             $this->token
         );
-    }
-
-    /**
-     * @return bool
-     */
-    public function isDebug()
-    {
-        return $this->debug;
     }
 
     /**

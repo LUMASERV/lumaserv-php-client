@@ -2,7 +2,7 @@
     "name": "lumaserv/lumaserv-php-client",
     "description": "A full-featured implementation of the LumaservSystem-JSON-API",
     "type": "library",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "require": {
         "php": ">=5.5",
         "guzzlehttp/guzzle": "6.2.1",
@@ -23,7 +23,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "1.0.1-dev"
         }
     }
 }

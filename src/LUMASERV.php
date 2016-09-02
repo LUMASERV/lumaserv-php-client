@@ -83,24 +83,24 @@ class LUMASERV
             case 'GET':
                 return $this->getHttpClient()->get($url, [
                     'verify' => false,
-                    'query' => $params
+                    'query'  => $params,
                 ]);
                 break;
             case 'POST':
                 return $this->getHttpClient()->post($url, [
                     'verify' => false,
-                    'body' => $params
+                    'body'   => $params,
                 ]);
                 break;
             case 'PUT':
                 return $this->getHttpClient()->put($url, [
                     'verify' => false,
-                    'body' => $params
+                    'body'   => $params,
                 ]);
             case 'DELETE':
                 return $this->getHttpClient()->delete($url, [
                     'verify' => false,
-                    'body' => $params
+                    'body'   => $params,
                 ]);
             default:
                 throw new MalformedParameterException('Wrong HTTP method passed');
@@ -116,10 +116,11 @@ class LUMASERV
     {
         $response = $response->getBody()->__toString();
         $result = json_decode($response);
-        if (json_last_error() == JSON_ERROR_NONE)
+        if (json_last_error() == JSON_ERROR_NONE) {
             return $result;
-        else
+        } else {
             return $response;
+        }
     }
 
     public function get($actionPath, $params = [])
@@ -160,14 +161,16 @@ class LUMASERV
         return $this->get('domains');
     }
 
-    public function isDomainAvailable($sld, $tld) {
+    public function isDomainAvailable($sld, $tld)
+    {
         return $this->get('domains/check', [
             'sld' => $sld,
-            'tld' => $tld
+            'tld' => $tld,
         ]);
     }
 
-    public function getDomainPrices() {
+    public function getDomainPrices()
+    {
         return $this->get('domains/prices');
     }
 }

@@ -75,25 +75,29 @@ class LUMASERV
         if (!is_array($params))
             throw new MalformedParameterException();
 
-        $params['token'] = $this->getCredentials()->getToken();
+        $params['api_token'] = $this->getCredentials()->getToken();
 
         switch ($method) {
             case 'GET':
                 return $this->getHttpClient()->get($url, [
+                    'verify' => false,
                     'query' => $params
                 ]);
                 break;
             case 'POST':
                 return $this->getHttpClient()->post($url, [
+                    'verify' => false,
                     'body' => $params
                 ]);
                 break;
             case 'PUT':
                 return $this->getHttpClient()->put($url, [
+                    'verify' => false,
                     'body' => $params
                 ]);
             case 'DELETE':
                 return $this->getHttpClient()->delete($url, [
+                    'verify' => false,
                     'body' => $params
                 ]);
             default:
@@ -107,12 +111,12 @@ class LUMASERV
      * @return \Psr\Http\Message\StreamInterface
      */
     private function processRequest($response) {
-        $response = $response->getBody();
+        $response = $response->getBody()->__toString();
         $result = json_decode($response);
         if (json_last_error() == JSON_ERROR_NONE)
-            return $response;
-        else
             return $result;
+        else
+            return $response;
     }
 
     public function get($actionPath, $params = []) {
@@ -141,5 +145,16 @@ class LUMASERV
 
     public function getAllDomains() {
         return $this->get('domains');
+    }
+
+    public function isDomainAvailable($sld, $tld) {
+        return $this->get('domains/check', [
+            'sld' => $sld,
+            'tld' => $tld
+        ]);
+    }
+
+    public function getDomainPrices() {
+        return $this->get('domains/prices');
     }
 }

@@ -11,7 +11,7 @@ class Credentials
 
     private $url;
 
-    public function __construct($token, $sandbox)
+    public function __construct($token, $sandbox = false)
     {
         if (!is_string($token)) {
             throw new MalformedParameterException('invalid argument');
@@ -20,11 +20,11 @@ class Credentials
         $this->token = $token;
 
         switch ($sandbox) {
-            case true:
+            case false:
                 $this->sandbox = false;
                 $this->url = 'https://reseller.lumaserv.com/api/v1/json/';
                 break;
-            case false:
+            case true:
                 $this->sandbox = true;
                 $this->url = 'https://test.reseller.lumaserv.com/api/v1/json/';
         }

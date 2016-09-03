@@ -83,24 +83,24 @@ class LUMASERV
             case 'GET':
                 return $this->getHttpClient()->get($url, [
                     'verify' => false,
-                    'query' => $params
+                    'query'  => $params,
                 ]);
                 break;
             case 'POST':
                 return $this->getHttpClient()->post($url, [
                     'verify' => false,
-                    'body' => $params
+                    'body'   => $params,
                 ]);
                 break;
             case 'PUT':
                 return $this->getHttpClient()->put($url, [
                     'verify' => false,
-                    'body' => $params
+                    'body'   => $params,
                 ]);
             case 'DELETE':
                 return $this->getHttpClient()->delete($url, [
                     'verify' => false,
-                    'body' => $params
+                    'body'   => $params,
                 ]);
             default:
                 throw new MalformedParameterException('Wrong HTTP method passed');
@@ -110,16 +110,17 @@ class LUMASERV
     /**
      * @param $response ResponseInterface
      *
-     * @return \Psr\Http\Message\StreamInterface
+     * @return array|string
      */
     private function processRequest($response)
     {
         $response = $response->getBody()->__toString();
         $result = json_decode($response);
-        if (json_last_error() == JSON_ERROR_NONE)
+        if (json_last_error() == JSON_ERROR_NONE) {
             return $result;
-        else
+        } else {
             return $response;
+        }
     }
 
     public function get($actionPath, $params = [])
@@ -150,24 +151,55 @@ class LUMASERV
         return $this->processRequest($response);
     }
 
+    /**
+     * @param string $actionPath    api domain path
+     * @return string               full api domain based on the api domain path
+     */
     public function getUrl($actionPath = '')
     {
         return $this->getCredentials()->getUrl().$actionPath;
     }
 
+    /**
+     * @deprecated
+     *
+     * @return array|string
+     */
     public function getAllDomains()
     {
-        return $this->get('domains');
+        return $this->domains()->getAll();
     }
 
-    public function isDomainAvailable($sld, $tld) {
-        return $this->get('domains/check', [
-            'sld' => $sld,
-            'tld' => $tld
-        ]);
+    /**
+     * @deprecated
+     * @param $sld
+     * @param $tld
+     * @return array|string
+     */
+    public function isDomainAvailable($sld, $tld)
+    {
+        return $this->domains()->isAvailable($sld, $tld);
     }
 
-    public function getDomainPrices() {
-        return $this->get('domains/prices');
+    /**
+     * @deprecated
+     * @return array|string
+     */
+    public function getDomainPrices()
+    {
+        return $this->domains()->getPrices();
+    }
+
+
+    private $domainHandler;
+
+    /**
+     * @return DomainHandler
+     */
+    public function domains() {
+        if (!$this->domainHandler)
+            $this->domainHandler = new DomainHandler($this);
+
+        return $this->domainHandler;
     }
 }

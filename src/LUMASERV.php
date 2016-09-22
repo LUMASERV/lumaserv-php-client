@@ -32,7 +32,9 @@ class LUMASERV
      */
     public function setHttpClient($httpClient = null)
     {
-        $this->httpClient = $httpClient ?: new Client();
+        $this->httpClient = $httpClient ?: new Client([
+            'allow_redirects' => false
+        ]);
     }
 
     public function setCredentials($credentials, $debug)
@@ -89,18 +91,27 @@ class LUMASERV
             case 'POST':
                 return $this->getHttpClient()->post($url, [
                     'verify' => false,
-                    'body'   => $params,
+                    'query' => [
+                        'api_token' => $this->getCredentials()->getToken()
+                    ],
+                    'form_params'   => $params,
                 ]);
                 break;
             case 'PUT':
                 return $this->getHttpClient()->put($url, [
                     'verify' => false,
-                    'body'   => $params,
+                    'query' => [
+                        'api_token' => $this->getCredentials()->getToken()
+                    ],
+                    'form_params'   => $params,
                 ]);
             case 'DELETE':
                 return $this->getHttpClient()->delete($url, [
                     'verify' => false,
-                    'body'   => $params,
+                    'query' => [
+                        'api_token' => $this->getCredentials()->getToken()
+                    ],
+                    'form_params'   => $params,
                 ]);
             default:
                 throw new MalformedParameterException('Wrong HTTP method passed');
@@ -152,9 +163,8 @@ class LUMASERV
     }
 
     /**
-     * @param string $actionPath api domain path
-     *
-     * @return string full api domain based on the api domain path
+     * @param string $actionPath    api domain path
+     * @return string               full api domain based on the api domain path
      */
     public function getUrl($actionPath = '')
     {
@@ -173,10 +183,8 @@ class LUMASERV
 
     /**
      * @deprecated
-     *
      * @param $sld
      * @param $tld
-     *
      * @return array|string
      */
     public function isDomainAvailable($sld, $tld)
@@ -186,7 +194,6 @@ class LUMASERV
 
     /**
      * @deprecated
-     *
      * @return array|string
      */
     public function getDomainPrices()
@@ -194,16 +201,15 @@ class LUMASERV
         return $this->domains()->getPrices();
     }
 
+
     private $domainHandler;
 
     /**
      * @return DomainHandler
      */
-    public function domains()
-    {
-        if (!$this->domainHandler) {
+    public function domains() {
+        if (!$this->domainHandler)
             $this->domainHandler = new DomainHandler($this);
-        }
 
         return $this->domainHandler;
     }

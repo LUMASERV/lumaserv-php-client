@@ -11,6 +11,7 @@ class DomainHandler
 {
     private $lumaserv;
     private $zoneHandler;
+    private $handleHandler;
 
     public function __construct(LUMASERV $lumaserv)
     {
@@ -88,5 +89,43 @@ class DomainHandler
         }
 
         return $this->zoneHandler;
+    }
+
+    /**
+     * @return DomainHandleHandler
+     */
+    public function handles()
+    {
+        if (!$this->handleHandler) {
+            $this->handleHandler = new DomainHandleHandler($this, $this->lumaserv);
+        }
+
+        return $this->handleHandler;
+    }
+
+    /**
+     * @param $date string      pass now for instant deletion or a date
+     *
+     * @return array
+     */
+    public function delete($sld, $tld, $date) {
+        return $this->lumaserv->delete('domains/delete', [
+            'sld' => $sld,
+            'tld' => $tld,
+            'delete_time' => $date
+        ]);
+    }
+
+    /**
+     * @param $date string      pass now for instant deletion or a date
+     *
+     * @return array
+     */
+    public function undelete($sld, $tld) {
+        return $this->lumaserv->delete('domains/delete', [
+            'sld' => $sld,
+            'tld' => $tld,
+            'delete_time' => 'undelete'
+        ]);
     }
 }

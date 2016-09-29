@@ -78,37 +78,41 @@ class NameserveZoneHandler
         return $this->lumaserv->get('domains/zones/'.$zone_id);
     }
 
-    public function addEntry($zone_id, $sld, $ttl, $type, $data) {
+    public function addEntry($zone_id, $sld, $ttl, $type, $data)
+    {
         return $this->addEntries($zone_id, [
             [
-                'sld' => $sld,
-                'ttl' => $ttl,
+                'sld'  => $sld,
+                'ttl'  => $ttl,
                 'type' => $type,
-                'data' => $data
-            ]
+                'data' => $data,
+            ],
         ]);
     }
 
-    public function addEntries($zone_id, $records) {
+    public function addEntries($zone_id, $records)
+    {
         return $this->lumaserv->put('domains/zones/'.$zone_id.'/entries', [
-            'records' => $records
+            'records' => $records,
         ]);
     }
 
-    public function delEntry($zone_id, $sld, $ttl = null, $type = null, $data = null) {
+    public function delEntry($zone_id, $sld, $ttl = null, $type = null, $data = null)
+    {
         return $this->delEntries($zone_id, [
             [
-                'sld' => $sld,
-                'ttl' => $ttl,
+                'sld'  => $sld,
+                'ttl'  => $ttl,
                 'type' => $type,
-                'data' => $data
-            ]
+                'data' => $data,
+            ],
         ]);
     }
 
-    public function delEntries($zone_id, $records) {
+    public function delEntries($zone_id, $records)
+    {
         return $this->lumaserv->delete('domains/zones/'.$zone_id.'/entries', [
-            'records' => $records
+            'records' => $records,
         ]);
     }
 }

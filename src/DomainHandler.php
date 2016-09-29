@@ -144,53 +144,56 @@ class DomainHandler
         ]);
     }
 
-    public function update($sld, $tld, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $zone_id, $ns_3 = null, $ns_4 = null, $ns_5 = null) {
+    public function update($sld, $tld, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $zone_id, $ns_3 = null, $ns_4 = null, $ns_5 = null)
+    {
         return $this->lumaserv->put('domains/update', [
-            'sld' => $sld,
-            'tld' => $tld,
+            'sld'      => $sld,
+            'tld'      => $tld,
             'ownerHdl' => $owner,
             'adminHdl' => $admin,
-            'techHdl' => $tech,
-            'zoneHdl' => $zone,
-            'ns1' => $ns_1,
-            'ns2' => $ns_2,
-            'ns3' => $ns_3,
-            'ns4' => $ns_4,
-            'ns5' => $ns_5,
-            'zone_id' => $zone_id
+            'techHdl'  => $tech,
+            'zoneHdl'  => $zone,
+            'ns1'      => $ns_1,
+            'ns2'      => $ns_2,
+            'ns3'      => $ns_3,
+            'ns4'      => $ns_4,
+            'ns5'      => $ns_5,
+            'zone_id'  => $zone_id,
         ]);
     }
 
-    public function create($sld, $tld, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $ns_3 = null, $ns_4 = null, $ns_5 = null) {
+    public function create($sld, $tld, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $ns_3 = null, $ns_4 = null, $ns_5 = null)
+    {
         return $this->lumaserv->post('domains/create', [
-            'sld' => $sld,
-            'tld' => $tld,
+            'sld'      => $sld,
+            'tld'      => $tld,
             'ownerHdl' => $owner,
             'adminHdl' => $admin,
-            'techHdl' => $tech,
-            'zoneHdl' => $zone,
-            'ns1' => $ns_1,
-            'ns2' => $ns_2,
-            'ns3' => $ns_3,
-            'ns4' => $ns_4,
-            'ns5' => $ns_5
+            'techHdl'  => $tech,
+            'zoneHdl'  => $zone,
+            'ns1'      => $ns_1,
+            'ns2'      => $ns_2,
+            'ns3'      => $ns_3,
+            'ns4'      => $ns_4,
+            'ns5'      => $ns_5,
         ]);
     }
 
-    public function tranfer($sld, $tld, $authcode, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $ns_3 = null, $ns_4 = null, $ns_5 = null) {
+    public function tranfer($sld, $tld, $authcode, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $ns_3 = null, $ns_4 = null, $ns_5 = null)
+    {
         return $this->lumaserv->post('domains/create', [
-            'sld' => $sld,
-            'tld' => $tld,
+            'sld'      => $sld,
+            'tld'      => $tld,
             'authcode' => $authcode,
             'ownerHdl' => $owner,
             'adminHdl' => $admin,
-            'techHdl' => $tech,
-            'zoneHdl' => $zone,
-            'ns1' => $ns_1,
-            'ns2' => $ns_2,
-            'ns3' => $ns_3,
-            'ns4' => $ns_4,
-            'ns5' => $ns_5
+            'techHdl'  => $tech,
+            'zoneHdl'  => $zone,
+            'ns1'      => $ns_1,
+            'ns2'      => $ns_2,
+            'ns3'      => $ns_3,
+            'ns4'      => $ns_4,
+            'ns5'      => $ns_5,
         ]);
     }
 }

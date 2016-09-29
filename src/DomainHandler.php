@@ -121,11 +121,12 @@ class DomainHandler
      *
      * @return array
      */
-    public function delete($sld, $tld, $date) {
+    public function delete($sld, $tld, $date)
+    {
         return $this->lumaserv->delete('domains/delete', [
-            'sld' => $sld,
-            'tld' => $tld,
-            'delete_time' => $date
+            'sld'         => $sld,
+            'tld'         => $tld,
+            'delete_time' => $date,
         ]);
     }
 
@@ -134,11 +135,12 @@ class DomainHandler
      *
      * @return array
      */
-    public function undelete($sld, $tld) {
+    public function undelete($sld, $tld)
+    {
         return $this->lumaserv->delete('domains/delete', [
-            'sld' => $sld,
-            'tld' => $tld,
-            'delete_time' => 'undelete'
+            'sld'         => $sld,
+            'tld'         => $tld,
+            'delete_time' => 'undelete',
         ]);
     }
 

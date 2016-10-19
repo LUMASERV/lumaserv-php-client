@@ -179,7 +179,28 @@ class DomainHandler
         ]);
     }
 
-    public function tranfer($sld, $tld, $authcode, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $ns_3 = null, $ns_4 = null, $ns_5 = null)
+    /**
+     * @deprecated
+     *
+     * @param $sld
+     * @param $tld
+     * @param $authcode
+     * @param $owner
+     * @param $admin
+     * @param $tech
+     * @param $zone
+     * @param $ns_1
+     * @param $ns_2
+     * @param null $ns_3
+     * @param null $ns_4
+     * @param null $ns_5
+     * @return array|string
+     */
+    public function tranfer($sld, $tld, $authcode, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $ns_3 = null, $ns_4 = null, $ns_5 = null) {
+        return $this->transfer($sld, $tld, $authcode, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $ns_3, $ns_4, $ns_5);
+    }
+
+    public function transfer($sld, $tld, $authcode, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $ns_3 = null, $ns_4 = null, $ns_5 = null)
     {
         return $this->lumaserv->post('domains/create', [
             'sld'      => $sld,

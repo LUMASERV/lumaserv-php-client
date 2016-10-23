@@ -85,7 +85,7 @@ class NameserveZoneHandler
                 'sld'  => $sld,
                 'ttl'  => $ttl,
                 'type' => $type,
-                'data' => $data,
+                'data' => $data
             ],
         ]);
     }
@@ -97,7 +97,7 @@ class NameserveZoneHandler
         ]);
     }
 
-    public function delEntry($zone_id, $sld, $ttl = null, $type = null, $data = null)
+    public function delEntry($zone_id, $sld, $ttl = null, $type = null, $data = null, $limit = null)
     {
         return $this->delEntries($zone_id, [
             [
@@ -105,6 +105,7 @@ class NameserveZoneHandler
                 'ttl'  => $ttl,
                 'type' => $type,
                 'data' => $data,
+                'limit' => $limit,
             ],
         ]);
     }

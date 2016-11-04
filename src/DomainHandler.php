@@ -179,6 +179,14 @@ class DomainHandler
         ]);
     }
 
+    public function authcode($sld, $tld)
+    {
+        return $this->lumaserv->get('domains/authcode', [
+            'sld' => $sld,
+            'tld' => $tld
+        ]);
+    }
+
     /**
      * @deprecated
      *

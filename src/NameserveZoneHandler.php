@@ -73,6 +73,17 @@ class NameserveZoneHandler
         ]);
     }
 
+    public function edit($zone_id, $title, $ttl, $ns_1 = null, $ns_2 = null)
+    {
+        return $this->lumaserv->put('domains/zones/'.$zone_id, [
+            'title'   => $title,
+            'ttl'     => $ttl,
+            'ns_1'    => $ns_1,
+            'ns_2'    => $ns_2,
+            'user_id' => null, //currently not impleneted in this client
+        ]);
+    }
+
     public function detail($zone_id)
     {
         return $this->lumaserv->get('domains/zones/'.$zone_id);

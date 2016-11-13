@@ -121,11 +121,12 @@ class DomainHandler
      *
      * @return array
      */
-    public function delete($sld, $tld, $date) {
+    public function delete($sld, $tld, $date)
+    {
         return $this->lumaserv->delete('domains/delete', [
-            'sld' => $sld,
-            'tld' => $tld,
-            'delete_time' => $date
+            'sld'         => $sld,
+            'tld'         => $tld,
+            'delete_time' => $date,
         ]);
     }
 
@@ -134,61 +135,94 @@ class DomainHandler
      *
      * @return array
      */
-    public function undelete($sld, $tld) {
+    public function undelete($sld, $tld)
+    {
         return $this->lumaserv->delete('domains/delete', [
-            'sld' => $sld,
-            'tld' => $tld,
-            'delete_time' => 'undelete'
+            'sld'         => $sld,
+            'tld'         => $tld,
+            'delete_time' => 'undelete',
         ]);
     }
 
-    public function update($sld, $tld, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $zone_id, $ns_3 = null, $ns_4 = null, $ns_5 = null) {
+    public function update($sld, $tld, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $zone_id, $ns_3 = null, $ns_4 = null, $ns_5 = null)
+    {
         return $this->lumaserv->put('domains/update', [
-            'sld' => $sld,
-            'tld' => $tld,
+            'sld'      => $sld,
+            'tld'      => $tld,
             'ownerHdl' => $owner,
             'adminHdl' => $admin,
-            'techHdl' => $tech,
-            'zoneHdl' => $zone,
-            'ns1' => $ns_1,
-            'ns2' => $ns_2,
-            'ns3' => $ns_3,
-            'ns4' => $ns_4,
-            'ns5' => $ns_5,
-            'zone_id' => $zone_id
+            'techHdl'  => $tech,
+            'zoneHdl'  => $zone,
+            'ns1'      => $ns_1,
+            'ns2'      => $ns_2,
+            'ns3'      => $ns_3,
+            'ns4'      => $ns_4,
+            'ns5'      => $ns_5,
+            'zone_id'  => $zone_id,
         ]);
     }
 
-    public function create($sld, $tld, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $ns_3 = null, $ns_4 = null, $ns_5 = null) {
+    public function create($sld, $tld, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $ns_3 = null, $ns_4 = null, $ns_5 = null)
+    {
         return $this->lumaserv->post('domains/create', [
-            'sld' => $sld,
-            'tld' => $tld,
+            'sld'      => $sld,
+            'tld'      => $tld,
             'ownerHdl' => $owner,
             'adminHdl' => $admin,
-            'techHdl' => $tech,
-            'zoneHdl' => $zone,
-            'ns1' => $ns_1,
-            'ns2' => $ns_2,
-            'ns3' => $ns_3,
-            'ns4' => $ns_4,
-            'ns5' => $ns_5
+            'techHdl'  => $tech,
+            'zoneHdl'  => $zone,
+            'ns1'      => $ns_1,
+            'ns2'      => $ns_2,
+            'ns3'      => $ns_3,
+            'ns4'      => $ns_4,
+            'ns5'      => $ns_5,
         ]);
     }
 
+    public function authcode($sld, $tld)
+    {
+        return $this->lumaserv->get('domains/authcode', [
+            'sld' => $sld,
+            'tld' => $tld
+        ]);
+    }
+
+    /**
+     * @deprecated
+     *
+     * @param $sld
+     * @param $tld
+     * @param $authcode
+     * @param $owner
+     * @param $admin
+     * @param $tech
+     * @param $zone
+     * @param $ns_1
+     * @param $ns_2
+     * @param null $ns_3
+     * @param null $ns_4
+     * @param null $ns_5
+     * @return array|string
+     */
     public function tranfer($sld, $tld, $authcode, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $ns_3 = null, $ns_4 = null, $ns_5 = null) {
+        return $this->transfer($sld, $tld, $authcode, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $ns_3, $ns_4, $ns_5);
+    }
+
+    public function transfer($sld, $tld, $authcode, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $ns_3 = null, $ns_4 = null, $ns_5 = null)
+    {
         return $this->lumaserv->post('domains/create', [
-            'sld' => $sld,
-            'tld' => $tld,
+            'sld'      => $sld,
+            'tld'      => $tld,
             'authcode' => $authcode,
             'ownerHdl' => $owner,
             'adminHdl' => $admin,
-            'techHdl' => $tech,
-            'zoneHdl' => $zone,
-            'ns1' => $ns_1,
-            'ns2' => $ns_2,
-            'ns3' => $ns_3,
-            'ns4' => $ns_4,
-            'ns5' => $ns_5
+            'techHdl'  => $tech,
+            'zoneHdl'  => $zone,
+            'ns1'      => $ns_1,
+            'ns2'      => $ns_2,
+            'ns3'      => $ns_3,
+            'ns4'      => $ns_4,
+            'ns5'      => $ns_5,
         ]);
     }
 }

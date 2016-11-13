@@ -218,4 +218,18 @@ class LUMASERV
 
         return $this->domainHandler;
     }
+
+    private $paymentHandler;
+
+    /**
+     * @return PaymentHandler
+     */
+    public function payments()
+    {
+        if (!$this->paymentHandler) {
+            $this->paymentHandler = new PaymentHandler($this);
+        }
+
+        return $this->paymentHandler;
+    }
 }

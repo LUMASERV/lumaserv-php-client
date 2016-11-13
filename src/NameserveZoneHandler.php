@@ -73,58 +73,42 @@ class NameserveZoneHandler
         ]);
     }
 
-    public function edit($zone_id, $title, $ttl, $ns_1 = null, $ns_2 = null)
-    {
-        return $this->lumaserv->put('domains/zones/'.$zone_id, [
-            'title'   => $title,
-            'ttl'     => $ttl,
-            'ns_1'    => $ns_1,
-            'ns_2'    => $ns_2,
-            'user_id' => null, //currently not impleneted in this client
-        ]);
-    }
-
     public function detail($zone_id)
     {
         return $this->lumaserv->get('domains/zones/'.$zone_id);
     }
 
-    public function addEntry($zone_id, $sld, $ttl, $type, $data)
-    {
+    public function addEntry($zone_id, $sld, $ttl, $type, $data) {
         return $this->addEntries($zone_id, [
             [
-                'sld'  => $sld,
-                'ttl'  => $ttl,
+                'sld' => $sld,
+                'ttl' => $ttl,
                 'type' => $type,
                 'data' => $data
-            ],
+            ]
         ]);
     }
 
-    public function addEntries($zone_id, $records)
-    {
+    public function addEntries($zone_id, $records) {
         return $this->lumaserv->put('domains/zones/'.$zone_id.'/entries', [
-            'records' => $records,
+            'records' => $records
         ]);
     }
 
-    public function delEntry($zone_id, $sld, $ttl = null, $type = null, $data = null, $limit = null)
-    {
+    public function delEntry($zone_id, $sld, $ttl = null, $type = null, $data = null) {
         return $this->delEntries($zone_id, [
             [
-                'sld'  => $sld,
-                'ttl'  => $ttl,
+                'sld' => $sld,
+                'ttl' => $ttl,
                 'type' => $type,
-                'data' => $data,
-                'limit' => $limit,
-            ],
+                'data' => $data
+            ]
         ]);
     }
 
-    public function delEntries($zone_id, $records)
-    {
+    public function delEntries($zone_id, $records) {
         return $this->lumaserv->delete('domains/zones/'.$zone_id.'/entries', [
-            'records' => $records,
+            'records' => $records
         ]);
     }
 }

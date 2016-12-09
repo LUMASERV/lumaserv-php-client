@@ -34,6 +34,7 @@ class LUMASERV
     {
         $this->httpClient = $httpClient ?: new Client([
             'allow_redirects' => false,
+            'timeout' => 120
         ]);
     }
 

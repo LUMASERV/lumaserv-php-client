@@ -233,4 +233,32 @@ class LUMASERV
 
         return $this->paymentHandler;
     }
+
+    private $trafficHandler;
+
+    /**
+     * @return TrafficHandler
+     */
+    public function traffic()
+    {
+        if (!$this->trafficHandler) {
+            $this->trafficHandler = new TrafficHandler($this);
+        }
+
+        return $this->trafficHandler;
+    }
+
+    private $alertHandler;
+
+    /**
+     * @return DdosAlertHandler
+     */
+    public function ddos_alerts()
+    {
+        if (!$this->alertHandler) {
+            $this->alertHandler = new DdosAlertHandler($this);
+        }
+
+        return $this->alertHandler;
+    }
 }

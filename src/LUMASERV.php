@@ -261,4 +261,18 @@ class LUMASERV
 
         return $this->alertHandler;
     }
+
+    private $accountingHandler;
+
+    /**
+     * @return AccountingHandler
+     */
+    public function accounting()
+    {
+        if (!$this->accountingHandler) {
+            $this->accountingHandler = new AccountingHandler($this);
+        }
+
+        return $this->accountingHandler;
+    }
 }

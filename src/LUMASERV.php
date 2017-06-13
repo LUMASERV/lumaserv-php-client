@@ -275,4 +275,18 @@ class LUMASERV
 
         return $this->accountingHandler;
     }
+
+    private $certificateHandler;
+
+    /**
+     * @return CertificateHandler
+     */
+    public function ssl_certificates()
+    {
+        if (!$this->certificateHandler) {
+            $this->certificateHandler = new CertificateHandler($this);
+        }
+
+        return $this->certificateHandler;
+    }
 }

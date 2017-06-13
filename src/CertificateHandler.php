@@ -17,19 +17,32 @@ class CertificateHandler
     }
 
     /**
-     * @param null $start
-     * @param null $end
      * @return array|string
      */
-    public function getAll($start = null, $end = null)
+    public function getAll()
     {
-        return $this->lumaserv->get('ddos-alerts', [
-            'start' => $start,
-            'end' => $end
+        return $this->lumaserv->get('ssl_certificates');
+    }
+
+    /**
+     * search for special certificates
+     * you can pass filter_name and filter_username or only one of this fields
+     * if you leave both fields empty, you will get all certificates.
+     *
+     * @param string $filter_name   basic sql search parameters like %, _ etc. are possible
+     * @param string $filter_username basic sql search parameters like %, _ etc. are possible
+     *
+     * @return array|string
+     */
+    public function searchCertificate($filter_name = '', $filter_username = '')
+    {
+        return $this->lumaserv->get('ssl_certificates', [
+            'filter_name'   => $filter_name,
+            'filter_username' => $filter_username,
         ]);
     }
 
-    public function createWithCsr($csr, $product_key, $runtime, $apporval_email,
+    public function createWithCsr($csr, $product_key, $runtime, $approval_email,
                                   $admin_firstname, $admin_lastname, $admin_organization, $admin_region, $admin_country, $admin_phone, $admin_fax = '', $admin_email,
                                   $tech_firstname, $tech_lastname, $tech_organization, $tech_region, $tech_country, $tech_phone, $tech_fax = '', $tech_email
     )
@@ -39,7 +52,7 @@ class CertificateHandler
             'runtime' => $runtime,
             'own_csr' => true,
             'csr' => $csr,
-            'approval_email' => $apporval_email,
+            'approval_email' => $approval_email,
 
             'admin_firstname' => $admin_firstname,
             'admin_lastname' => $admin_lastname,
@@ -61,9 +74,9 @@ class CertificateHandler
         ]);
     }
 
-    public function createWithoutCsr($name, $csr_name, $csr_department, $csr_city, $csr_region, $csr_country, $csr_email, $product_key, $runtime, $apporval_email,
-                                  $admin_firstname, $admin_lastname, $admin_organization, $admin_region, $admin_country, $admin_phone, $admin_fax = '', $admin_email,
-                                  $tech_firstname, $tech_lastname, $tech_organization, $tech_region, $tech_country, $tech_phone, $tech_fax = '', $tech_email
+    public function createWithoutCsr($name, $csr_name, $csr_department, $csr_city, $csr_region, $csr_country, $csr_email, $product_key, $runtime, $approval_email,
+                                     $admin_firstname, $admin_lastname, $admin_organization, $admin_region, $admin_country, $admin_phone, $admin_fax = '', $admin_email,
+                                     $tech_firstname, $tech_lastname, $tech_organization, $tech_region, $tech_country, $tech_phone, $tech_fax = '', $tech_email
     )
     {
         return $this->lumaserv->post('ssl_certificates/create', [
@@ -77,7 +90,7 @@ class CertificateHandler
             'csr_region' => $csr_region,
             'csr_country' => $csr_country,
             'csr_email' => $csr_email,
-            'approval_email' => $apporval_email,
+            'approval_email' => $approval_email,
 
             'admin_firstname' => $admin_firstname,
             'admin_lastname' => $admin_lastname,

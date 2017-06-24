@@ -289,4 +289,18 @@ class LUMASERV
 
         return $this->certificateHandler;
     }
+
+    private $addressesHandler;
+
+    /**
+     * @return AddressesHandler
+     */
+    public function addresses()
+    {
+        if (!$this->addressesHandler) {
+            $this->addressesHandler = new AddressesHandler($this);
+        }
+
+        return $this->addressesHandler;
+    }
 }

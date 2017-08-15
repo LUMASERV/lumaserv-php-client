@@ -3,6 +3,7 @@
 namespace LumaservSystems;
 
 use GuzzleHttp\Client;
+use LumaservSystems\Datacenter\PxeInstallationHandler;
 use LumaservSystems\Exception\MalformedParameterException;
 use Psr\Http\Message\ResponseInterface;
 
@@ -302,5 +303,19 @@ class LUMASERV
         }
 
         return $this->addressesHandler;
+    }
+
+    private $pxeInstallationHandler;
+
+    /**
+     * @return PxeInstallationHandler
+     */
+    public function pxe_installations()
+    {
+        if (!$this->pxeInstallationHandler) {
+            $this->pxeInstallationHandler = new PxeInstallationHandler($this);
+        }
+
+        return $this->pxeInstallationHandler;
     }
 }

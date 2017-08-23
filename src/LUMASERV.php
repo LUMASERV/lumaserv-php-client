@@ -3,7 +3,6 @@
 namespace LumaservSystems;
 
 use GuzzleHttp\Client;
-use LumaservSystems\Datacenter\PxeInstallationHandler;
 use LumaservSystems\Exception\MalformedParameterException;
 use Psr\Http\Message\ResponseInterface;
 

@@ -1,8 +1,6 @@
 <?php
 
-namespace LumaservSystems\Datacenter;
-
-use LumaservSystems\LUMASERV;
+namespace LumaservSystems;
 
 class PxeInstallationHandler
 {

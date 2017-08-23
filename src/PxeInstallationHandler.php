@@ -45,7 +45,7 @@ class PxeInstallationHandler
      */
     public function create($address, $mac_address, $hostname, $template, $password, $support_ssh_key = false, $raid_level = null, $raid_disk_count = null)
     {
-        return $this->lumaserv->post('datacenter/pxe_installations', [
+        return $this->lumaserv->post('datacenter/pxe_installations/create', [
             'address' => $address,
             'mac_address' => $mac_address,
             'hostname' => $hostname,

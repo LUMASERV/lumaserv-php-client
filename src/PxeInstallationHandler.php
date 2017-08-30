@@ -53,7 +53,8 @@ class PxeInstallationHandler
             'password' => $password,
             'support_ssh_key' => $support_ssh_key,
             'raid_level' => $raid_level,
-            'raid_disk_count' => $raid_disk_count
+            'raid_disk_count' => $raid_disk_count,
+            'network_name' => $network_name
         ]);
     }
 

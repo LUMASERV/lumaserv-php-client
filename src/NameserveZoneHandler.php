@@ -108,6 +108,25 @@ class NameserveZoneHandler
         ]);
     }
 
+    public function changeEntries($zone_id, $old_record_sld = null, $old_record_ttl = null, $old_record_type = null, $old_record_data = null, $record_sld = null, $record_ttl = null, $record_type = null, $record_data = null, $limit = null)
+    {
+        return $this->lumaserv->post('domains/zones/'.$zone_id.'/changeEntries', [
+            'old_record' => [
+                'sld' => $old_record_sld,
+                'ttl' => $old_record_ttl,
+                'type' => $old_record_type,
+                'data' => $old_record_data
+            ],
+            'record' => [
+                'sld' => $record_sld,
+                'ttl' => $record_ttl,
+                'type' => $record_type,
+                'data' => $record_data
+            ],
+            'limit' => $limit
+        ]);
+    }
+
     public function delEntry($zone_id, $sld, $ttl = null, $type = null, $data = null, $limit = null)
     {
         return $this->delEntries($zone_id, [

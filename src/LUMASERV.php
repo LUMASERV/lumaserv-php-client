@@ -317,4 +317,19 @@ class LUMASERV
 
         return $this->pxeInstallationHandler;
     }
+
+
+    private $virtualServerHandler;
+
+    /**
+     * @return VirtualServerHandler
+     */
+    public function virtual_servers()
+    {
+        if (!$this->virtualServerHandler) {
+            $this->virtualServerHandler = new VirtualServerHandler($this);
+        }
+
+        return $this->virtualServerHandler;
+    }
 }

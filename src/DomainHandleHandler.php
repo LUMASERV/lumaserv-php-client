@@ -37,7 +37,7 @@ class DomainHandleHandler
         ]);
     }
 
-    public function create($type, $sex, $firstname, $lastname, $organisation, $street, $number, $postcode, $city, $region, $country, $phone, $fax, $email, $countryofbirth,
+    public function create($type, $sex, $firstname, $lastname, $organisation, $street, $number, $postcode, $city, $region, $country, $phone, $fax, $email, $countryofbirth = null,
                            $idcard = null, $idcardauthority = null, $idcardissuedate = null, $taxnr = null, $vatnr = null, $dateofbirth = null, $placeofbirth = null,
                            $regionofbirth = null, $registrationnumber = null)
     {

@@ -118,4 +118,23 @@ class SingleVirtualServerHandler
             'backups' => $backups
         ]);
     }
+
+    public function deleteServer()
+    {
+        return $this->lumaserv->post('servers/virtual/'.$this->id.'/delete');
+    }
+
+    public function createScheduledTask($action, $interval, $first_execution = null)
+    {
+        return $this->lumaserv->post('servers/virtual/'.$this->id.'/scheduledTask/create', [
+            'action' => $action,
+            'interval' => $interval,
+            'first_execution' => $first_execution
+        ]);
+    }
+
+    public function deleteScheduledTask($task_id)
+    {
+        return $this->lumaserv->post('servers/virtual/'.$this->id.'/scheduledTask/'.$task_id.'/delete');
+    }
 }

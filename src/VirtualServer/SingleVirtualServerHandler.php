@@ -137,4 +137,12 @@ class SingleVirtualServerHandler
     {
         return $this->lumaserv->post('servers/virtual/'.$this->id.'/scheduledTask/'.$task_id.'/delete');
     }
+
+    public function graphs($timeframe, $cf = 'AVERAGE')
+    {
+        return $this->lumaserv->get('servers/virtual/'.$this->id.'/graphs', [
+            'timeframe' => $timeframe,
+            'cf' => $cf
+        ]);
+    }
 }

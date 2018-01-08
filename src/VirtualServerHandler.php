@@ -29,7 +29,7 @@ class VirtualServerHandler
         return $this->lumaserv->get('servers/virtual');
     }
 
-    public function orderServer($cores, $memory, $disk, $addresses_v4, $backups, $password = null)
+    public function orderServer($cores, $memory, $disk, $addresses_v4, $backups, $password = null, $template = null, $hostname = null)
     {
         return $this->lumaserv->post('servers/virtual/order', [
             'cores' => $cores,
@@ -37,7 +37,9 @@ class VirtualServerHandler
             'disk' => $disk,
             'addresses_v4' => $addresses_v4,
             'backups' => $backups,
-            'password' => $password
+            'password' => $password,
+            'template' => $template,
+            'hostname' => $hostname
         ]);
     }
 

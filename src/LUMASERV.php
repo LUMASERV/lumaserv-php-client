@@ -332,4 +332,19 @@ class LUMASERV
 
         return $this->virtualServerHandler;
     }
+
+
+    private $toolHandler;
+
+    /**
+     * @return ToolHandler
+     */
+    public function tools()
+    {
+        if (!$this->toolHandler) {
+            $this->toolHandler = new ToolHandler($this);
+        }
+
+        return $this->toolHandler;
+    }
 }

@@ -144,7 +144,7 @@ class DomainHandler
         ]);
     }
 
-    public function update($sld, $tld, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $zone_id, $ns_3 = null, $ns_4 = null, $ns_5 = null)
+    public function update($sld, $tld, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $zone_id = null, $ns_3 = null, $ns_4 = null, $ns_5 = null)
     {
         return $this->lumaserv->put('domains/update', [
             'sld'      => $sld,
@@ -162,7 +162,7 @@ class DomainHandler
         ]);
     }
 
-    public function create($sld, $tld, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $ns_3 = null, $ns_4 = null, $ns_5 = null)
+    public function create($sld, $tld, $owner, $admin, $tech, $zone, $ns_1, $ns_2, $ns_3 = null, $ns_4 = null, $ns_5 = null, $years = 1)
     {
         return $this->lumaserv->post('domains/create', [
             'sld'      => $sld,
@@ -176,6 +176,7 @@ class DomainHandler
             'ns3'      => $ns_3,
             'ns4'      => $ns_4,
             'ns5'      => $ns_5,
+            'years'    => $years
         ]);
     }
 

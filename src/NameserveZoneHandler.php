@@ -89,6 +89,11 @@ class NameserveZoneHandler
         return $this->lumaserv->get('domains/zones/'.$zone_id);
     }
 
+    public function deleteZone($zone_id)
+    {
+        return $this->lumaserv->delete('domains/zones/'.$zone_id.'/delete');
+    }
+
     public function addEntry($zone_id, $sld, $ttl, $type, $data)
     {
         return $this->addEntries($zone_id, [
